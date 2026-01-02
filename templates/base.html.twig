@@ -18,6 +18,7 @@
 			{% endblock %}
 		{% endblock %}
 	</head>
+	{% set route = app.request.attributes.get('_route') %}
 	<body>
 		<div id="main-container">
 			<nav>
@@ -25,13 +26,13 @@
 					<img src="/img/logo.png" alt="Logo TaskLinker"/>
 				</a>
 				<ul id="main-menu">
-					<li class="active">
+					<li class="{{ route starts with 'app_projet' or route == 'app_home' ? 'active' : '' }}">
 						<a href="{{ path('app_home') }}">
 							<i class="fa-solid fa-list-check"></i>
 							Projets
 						</a>
 					</li>
-					<li>
+					<li class="{{ route starts with 'app_employe' ? 'active' : '' }}">
 						<a href="{{ path('app_employes') }}">
 							<i class="fa-regular fa-user"></i>
 							Équipe
