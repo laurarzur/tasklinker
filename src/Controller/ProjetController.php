@@ -21,8 +21,19 @@ final class ProjetController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        $tachesParStatut = [
+            'To Do' => [],
+            'Doing' => [],
+            'Done' => []
+        ];
+
+        foreach ($projet->getTaches() as $tache) {
+            $tachesParStatut[$tache->getStatut()->getNom()][] = $tache;
+        }
+
         return $this->render('projet/index.html.twig', [
-            'projet' => $projet
+            'projet' => $projet,
+            'tachesParStatut' => $tachesParStatut
         ]);
     }
 

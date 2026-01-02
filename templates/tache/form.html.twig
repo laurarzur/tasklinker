@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% set title = app.current_route == 'app_tache_ajouter' ? 'Créer une tâche' : tache.titre %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block heading %}
+	{{ title }}
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form) }}
+	<div>
+		{{ form_row(form.titre, {label: 'Titre de la tâche'}) }}
+	</div>
+	<div>
+		{{ form_row(form.description, {label: 'Description'}) }}
+	</div>
+	<div class="flex-form">
+		<div>
+			{{ form_row(form.deadline, {label: 'Date'}) }}
+		</div>
+		<div>
+			{{ form_row(form.statut, {label: 'Statut'}) }}
+		</div>
+	</div>
+	<div>
+		{{ form_row(form.membre, {label: 'Membre'}) }}
+	</div>
+	<br>
+	{% if title == 'Créer une tâche' %}
+		<button class="button button-submit">Ajouter</button>
+	{% else %}
+		<button class="button button-submit">Modifier</button>
+		<a href="{{ path('app_tache_supprimer', {projet: projet.id, id: tache.id}) }}" class="delete-task">Supprimer la tâche</a>
+	{% endif %}
+	{{ form_end(form) }}
+{% endblock %}
