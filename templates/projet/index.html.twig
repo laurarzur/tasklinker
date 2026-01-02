@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ projet.titre }}
+{% endblock %}
+
+{% block header %}
+	<div class="flex-header">
+		<h1>{{ projet.titre }}</h1>
+		{% if projet.membres|length > 0 %}
+			<div class="user-list">
+				{% for membre in projet.membres %}
+					<div class="avatar">{{ membre.prenom|first|upper }}{{ membre.nom|first|upper }}</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+		<a class="button" href="{{ path('app_projet_modifier', {id: projet.id}) }}">Modifier</a>
+	</div>
+{% endblock %}
+
+{% block body %}
+	<div id="tasks-container">
+		<div class="task-column">
+			<h2>To Do</h2>
+			<div class="tasks-list">
+				<a href="#" class="task-add">
+					+ Ajouter une tâche
+				</a>
+			</div>
+		</div>
+		<div class="task-column">
+			<h2>Doing</h2>
+			<div class="tasks-list">
+				<a href="#" class="task-add">
+					+ Ajouter une tâche
+				</a>
+			</div>
+		</div>
+		<div class="task-column">
+			<h2>Done</h2>
+			<div class="tasks-list">
+				<a href="#" class="task-add">
+					+ Ajouter une tâche
+				</a>
+			</div>
+		</div>
+	{% endblock %}
