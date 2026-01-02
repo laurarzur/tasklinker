@@ -19,6 +19,12 @@
 		{{ form_row(form.membres, {label: 'Inviter des membres'}) }}
 	</div>
 	<br>
-	<button class="button button-submit">Continuer</button>
+	<button class="button button-submit">
+		{% if title == 'Nouveau projet' %}
+			Continuer
+		{% else %}
+			Modifier
+		{% endif %}
+	</button>
 	{{ form_end(form) }}
 {% endblock %}
